@@ -38,7 +38,4 @@
    - Comparisons
      - compare.py
        - Comparison of regression models
-=======
-# MLExamples
 
->>>>>>> 26f162a921713580de15355fa6459a598daf2359
