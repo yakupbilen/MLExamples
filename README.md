@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # <div align="center">MLExamples</div>
 
 #####<div align="center">Data Sources</div>
