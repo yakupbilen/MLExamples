@@ -30,15 +30,17 @@ print(50*"*")
 X = df[[model_base[1]]]
 Y = df[["Sales"]]
 
-x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=99)
-X_test = x_test.sort_index()
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=19)
+X_test = x_test.sort_index()  # for plotting
 Y_test = y_test.sort_index()
 
 lr = LinearRegression()
 lr.fit(x_train, y_train)
 predict = lr.predict(X_test)
-
-print(f"{model_base[1]} --> Sales r2 score : {r2_score(Y_test, predict)}")
+r2 = r2_score(Y_test, predict)
+adj_r2 = 1-(1-r2)*((len(y_test)-1)/(len(y_test)-1-X_test.shape[1]))
+print(f"{model_base[1]} --> Sales r2 score : {r2}")
+print(f"{model_base[1]} --> Sales Adjusted r2 score : {adj_r2}")
 print(f"{model_base[1]} --> Sales Mean Absolute Error: {mean_absolute_error(Y_test, predict)}")
 print(f"{model_base[1]} --> Sales Mean Squared Error: {mean_squared_error(Y_test, predict)}\n")
 

@@ -1,32 +1,10 @@
 import pandas as pd
-import statsmodels.api as sm
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import math
-from importlib import reload
 from Preprocessing.outlier import delete_outliers_qr,delete_outliers_z
-
-
-def backward_elimination(data: pd.DataFrame(), target):
-    temp_df = data.copy()
-    index_list = [*range(0, len(temp_df.columns))]
-
-    while True:
-        X = temp_df.iloc[:, index_list].values
-        model = sm.OLS(target, X).fit()
-        finish = True
-        for i in range(len(index_list)):
-            if model.pvalues[i] >= 0.05:  # Significance level
-                index_list.__delitem__(i)
-                finish = False
-        if finish:
-            break
-    for i in range(max(index_list)):
-        if not index_list.__contains__(i):
-            temp_df.drop(temp_df.columns[i], axis=1, inplace=True)
-    return temp_df
-
+from Preprocessing.preprocessing import backward_elimination
 
 
 
@@ -58,8 +36,11 @@ for dataframe in df_list:
     y_pred = lr.predict(x_test)
     y_test_np = y_test.values
 
+    r2 = r2_score(y_pred, y_test)
+    adj_r2 = 1 - (1 - r2) * ((len(y_test) - 1) / (len(y_test) - 1 - x_test.shape[1]))
     print(50*"-")
-    print(f"Model {i} R2 Score : {r2_score(y_pred, y_test)}")
+    print(f"Model {i} R2 Score : {r2}")
+    print(f"Model {i} Adjusted R2 Score : {adj_r2}")
     print(f"Model {i} Mean Squared Error : {mean_squared_error(y_pred, y_test)}")
     print(f"Model {i} Root Mean Squared Error : {math.sqrt(mean_squared_error(y_pred, y_test))}")
     print(50*"-")
