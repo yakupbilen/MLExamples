@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # <div align="center">MLExamples</div>
 
 #####<div align="center">Data Sources</div>
@@ -37,3 +38,7 @@
    - Comparisons
      - compare.py
        - Comparison of regression models
+=======
+# MLExamples
+
+>>>>>>> 26f162a921713580de15355fa6459a598daf2359
