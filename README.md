@@ -5,6 +5,8 @@
 - [Linear Regression.csv](https://www.kaggle.com/tanuprabhu/linear-regression-dataset)
 - [advertising.csv](https://www.kaggle.com/ashydv/advertising-dataset)
 - [USA_Housing.csv](https://www.kaggle.com/vedavyasv/usa-housing)
+- [Social_Network_Ads.csv](https://www.kaggle.com/akram24/social-network-ads)
+- [diabetes.csv](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
 
 
 
@@ -38,4 +40,7 @@
    - Comparisons
      - compare.py
        - Comparison of regression models
+3. Classification
+   - Logistic
+   - Knn
 
