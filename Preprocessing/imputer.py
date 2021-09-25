@@ -14,6 +14,7 @@ class Imputer():
     def fit(self, df: DataFrame(), columns: list):
         self.impute_values.clear()
         self.columns.clear()
+        self.df = df
         if self.strategy == "mean":
             for column in columns:
                 if isinstance(self.missing_values, str):
@@ -65,9 +66,9 @@ class Imputer():
         else:
             raise ValueError("Strategy must be mean,median or most_frequent")
 
-    def transform(self,df:DataFrame()):
+    def transform(self):
         i = 0
-        temp_df = df.copy()
+        temp_df = self.df.copy()
         for column in self.columns:
             try:
                 temp_df[column] = temp_df[column].replace(self.missing_values,self.impute_values[i]).astype(str).astype(float)

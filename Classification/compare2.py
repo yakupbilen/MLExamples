@@ -12,7 +12,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-df = pd.read_csv("SVM/glass.csv")
+df = pd.read_csv("glass.csv")
 print(df.head(5))
 
 
@@ -32,11 +32,11 @@ knn.fit(x_train,y_train.ravel())
 knn_pred = knn.predict(x_test)
 
 # Svm
-x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.7,random_state=0)
-svm = SVC(kernel="linear")
+svm = SVC(kernel="rbf",random_state=0)
 svm.fit(x_train,y_train.ravel())
 svm_pred = svm.predict(x_test)
 
+x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.7,random_state=0)
 # Naive Bayes
 nb = GaussianNB()
 nb.fit(x_train,y_train)

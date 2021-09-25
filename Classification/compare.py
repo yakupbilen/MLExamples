@@ -32,10 +32,9 @@ logr_pred = logr.predict(x_test)
 knn = KNeighborsClassifier(n_neighbors=5,metric="euclidean")
 knn.fit(x_train,y_train.ravel())
 knn_pred = knn.predict(x_test)
-
 # Svm
 x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.7,random_state=0)
-svm = SVC(kernel="linear")
+svm = SVC(kernel="linear",random_state=0)
 svm.fit(x_train,y_train.ravel())
 svm_pred = svm.predict(x_test)
 

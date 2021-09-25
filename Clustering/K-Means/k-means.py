@@ -2,7 +2,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
+from factor_analyzer import FactorAnalyzer
 import warnings
+
 
 warnings.filterwarnings('ignore')
 
@@ -11,12 +13,13 @@ df = pd.read_csv("../../Classification/Iris.csv")
 x = df.iloc[:,1:5]
 
 scores = []
-for i in range(1,10):
-    kmeans = KMeans(n_clusters=i,init='k-means++',random_state=0)
+for i in range(2,10):
+    kmeans = KMeans(n_clusters=i,init='k-means++', random_state=0)
     kmeans.fit(x)
     scores.append(kmeans.inertia_)
 
-kmeans = KMeans(n_clusters=2,init='k-means++',random_state=0)
+print(scores)
+kmeans = KMeans(n_clusters=2,init='k-means++', random_state=0)
 pred = kmeans.fit_predict(x)
 
 labels = np.unique(pred)

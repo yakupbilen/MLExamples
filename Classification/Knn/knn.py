@@ -1,8 +1,9 @@
 import pandas as pd
 from sklearn.metrics import confusion_matrix
-from sklearn.preprocessing import MinMaxScaler,StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score,f1_score
+from Preprocessing.outlier import delete_outliers_qr
 
 # From correlation matrix
 
@@ -28,7 +29,7 @@ print(df.isna().sum())
 
 print("\nCorrelation of Columns")
 print(df.corr(method="pearson"))
-
+df = delete_outliers_qr(df,["Outcome"])
 x = df.iloc[:, 0:8]
 y = df.iloc[:, 8:9]
 
@@ -56,15 +57,18 @@ standart_sc = StandardScaler()
 x_sc = standart_sc.fit_transform(x)
 """
 
+
+
 x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.7,random_state=22)
 
-knn = KNeighborsClassifier(n_neighbors=3,metric="euclidean")
+knn = KNeighborsClassifier(n_neighbors=5,metric="euclidean")
 knn.fit(x_train,y_train.values.ravel())
 pred = knn.predict(x_test)
 cm = confusion_matrix(y_test,pred)
 print("\nConfusion Matrix : ")
 print(cm)
-
+print("Accuracy : ",accuracy_score(y_test, pred))
+print("F1 Score : ",f1_score(y_test, pred))
 
 """
  random state = 42
