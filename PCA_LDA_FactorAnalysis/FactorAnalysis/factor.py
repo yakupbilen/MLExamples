@@ -11,6 +11,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 data= load_breast_cancer()
+
 df = pd.DataFrame(np.c_[data['data'], data['target']],
                   columns= np.append(data['feature_names'], ['target']))
 
