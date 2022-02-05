@@ -19,5 +19,5 @@ lr.fit(x_train,y_train)
 predict = lr.predict(X_test)
 plt.scatter(X_test,Y_test,color="red")
 plt.plot(X_test,predict,color="black")
-
+print(type(X_test))
 plt.show()
